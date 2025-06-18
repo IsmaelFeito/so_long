@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC =   src/main.c 
+SRC =   src/main.c src/utils_so_long.c
 
 RM = rm -rf
 CFLAGS = -Werror -Wall -Wextra 
@@ -21,10 +21,10 @@ ${LIBFT_PATH}${LIBFT}:
 
 clean:
 	@${RM} ${OBJS_S}
-	@make fclean -C ${LIBFT_PATH}
+	@make clean -C ${LIBFT_PATH}
 
 fclean: clean
-	@${RM} ${NAME} ${LIBFT_PATH}${LIBFT}
+	@${RM} ${NAME} ${LIBFT_PATH}${LIBFT} ${LIBFT_PATH}.bonus 
 
 re: fclean all
 .PHONY: all re clean fclean

@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:18:41 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/06/04 16:31:59 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:50:19 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,12 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+//extras
 void	freedom(void **ptr);
 int		ft_sqrt(int nbr);
+int		ft_count_file_lines(const char *file_name);
+void	ft_double_freedom(char ***matrix);
 
 
 //gnl

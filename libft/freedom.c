@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   freedom.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ifeito-m <ifeito-m@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/28 12:28:33 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/02/24 19:07:52 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/06/18 17:37:57 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	freedom(void **ptr)
 {
-	if (*ptr)
+	if (ptr && *ptr)
 	{
 		free(*ptr);
 		*ptr = NULL;

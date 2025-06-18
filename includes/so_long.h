@@ -3,13 +3,16 @@
 
 # include "../includes/libft.h"
 
-typedef struct s_map
+typedef struct t_game
 {
     char    **map;
     int     total_coins;
     int     count_coins;
     int     steps;
     int    is_colected;
-} s_map;
+} s_game;
+
+void	init_strc_map(char ***map, char **temp_map, int matrix_len);
+
 
 #endif

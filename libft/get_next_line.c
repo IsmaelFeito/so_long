@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 18:37:20 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/06/04 16:29:43 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/06/10 21:00:32 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,39 +112,39 @@ char	*get_next_line(int fd)
 	return (next_line);
 }
 
-int main()
-{
-    char    *line1;
-	char	*line2;
-    int     fd1;
-	int		fd2;
+// int main()
+// {
+//     char    *line1;
+// 	char	*line2;
+//     int     fd1;
+// 	int		fd2;
 
-    fd1 = open("prueba3.txt", O_RDONLY);
-	fd2 = open("prueba2.txt", O_RDONLY);
-	if (fd1 == -1 && fd2 == -1)
-	{
-		close(fd2);
-		close(fd1);
-		return (0);
-	}
-	line1 = "";
-	line2 = "";
-    while (line1 != NULL || line2 != NULL)
-    {
-        line1 = get_next_line(fd1);
-		line2 = get_next_line(fd2);
-		if (!line1 && !line2)
-		{
-			free (line1);
-			free (line2);
-			break;
-		}
-        printf("%s", line1);
-		printf("%s", line2);
-		free(line1);
-		free(line2);
-    }
-	free(line1);
-	close(fd1);
-    return (0);
-}
+//     fd1 = open("prueba3.txt", O_RDONLY);
+// 	fd2 = open("prueba2.txt", O_RDONLY);
+// 	if (fd1 == -1 && fd2 == -1)
+// 	{
+// 		close(fd2);
+// 		close(fd1);
+// 		return (0);
+// 	}
+// 	line1 = "";
+// 	line2 = "";
+//     while (line1 != NULL || line2 != NULL)
+//     {
+//         line1 = get_next_line(fd1);
+// 		line2 = get_next_line(fd2);
+// 		if (!line1 && !line2)
+// 		{
+// 			free (line1);
+// 			free (line2);
+// 			break;
+// 		}
+//         printf("%s", line1);
+// 		printf("%s", line2);
+// 		free(line1);
+// 		free(line2);
+//     }
+// 	free(line1);
+// 	close(fd1);
+//     return (0);
+// }
