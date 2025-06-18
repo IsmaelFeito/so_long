@@ -20,7 +20,7 @@ BONUSS =		ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c ft_lstlas
 
 BONUS_OBJS = $(BONUSS:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -g
 REMOVE = rm -f
 CC = cc
 

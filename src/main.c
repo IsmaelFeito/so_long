@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:25:48 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/06/18 12:58:08 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/06/18 21:48:37 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,10 @@ int save_map(char **temp, char *map_name, int map_len)
 	int		i;
 	
 	if ((fd_map = open(map_name, O_RDONLY)) == -1)
-	return ft_putstr_fd("Error opening fd/doesn't exists", 2), 1;
-	
+	{
+		perror("Error opening fd/doesn't exists");
+		exit(EXIT_FAILURE);
+	}
 	i = 0;
     while (i < map_len - 1 && (line = get_next_line(fd_map)) != NULL)
 	{
@@ -133,15 +135,18 @@ int main(int ac, char **av)
         if (save_map(temp_map, map_name, map_len) != 0)
         {
             free(map_name);
-            if (temp_map) ft_double_freedom(temp_map);
-            return 1;
+            if (temp_map) 
+			{
+				ft_double_freedom((void ***)&temp_map);
+				return 1;
+			}
         }
         init_map(&game, temp_map, map_len);// Initialize game map
         if (temp_map) 
-			ft_double_freedom(temp_map);// Cleanup temporary map
+			ft_double_freedom((void ***)&temp_map);// Cleanup temporary map
         free(map_name);
         /* Game loop would go here */
-        if (game.map) ft_double_freedom(game.map);// Final cleanup
+        if (game.map) ft_double_freedom((void ***)&game.map);// Final cleanup
     }
     else 
     {

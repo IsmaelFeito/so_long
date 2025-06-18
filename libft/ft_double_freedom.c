@@ -12,7 +12,7 @@
 
 #include "../includes/libft.h"
 
-void ft_double_freedom(char ***matrix)
+void ft_double_freedom(void ***matrix)
 {
 	int i;
 
@@ -20,7 +20,8 @@ void ft_double_freedom(char ***matrix)
 		return;
 	i = 0;
 	while ((*matrix)[i]){
-		freedom((void **)&(*matrix)[i++]);
+		free((*matrix)[i++]);
 	}
-	freedom((void **)matrix);
+	free(*matrix);
+	*matrix = NULL;
 }
