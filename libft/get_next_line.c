@@ -6,22 +6,22 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 18:37:20 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/06/10 21:00:32 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/09 00:02:04 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-void	clean_list(p_list **list)
+void	clean_list(t_gnl_node **list)
 {
-	p_list	*last_node;
-	p_list	*clean_node;
-	int		i;
-	int		j;
-	char	*buf;
+	t_gnl_node	*last_node;
+	t_gnl_node	*clean_node;
+	int			i;
+	int			j;
+	char		*buf;
 
 	buf = malloc(BUFFER_SIZE +1);
-	clean_node = malloc(sizeof(p_list));
+	clean_node = malloc(sizeof(t_gnl_node));
 	if (NULL == buf || NULL == clean_node)
 		return ;
 	last_node = find_last_node(*list);
@@ -37,7 +37,7 @@ void	clean_list(p_list **list)
 	free_nodes(list, clean_node, buf);
 }
 
-char	*get_line(p_list *list)
+char	*get_line(t_gnl_node *list)
 {
 	int		str_len;
 	char	*next_str;
@@ -52,13 +52,13 @@ char	*get_line(p_list *list)
 	return (next_str);
 }
 
-void	link_new_node(p_list **list, char *buf)
+void	link_new_node(t_gnl_node **list, char *buf)
 {
-	p_list	*new_node;
-	p_list	*last_node;
+	t_gnl_node	*new_node;
+	t_gnl_node	*last_node;
 
 	last_node = find_last_node(*list);
-	new_node = malloc(sizeof(p_list));
+	new_node = malloc(sizeof(t_gnl_node));
 	if (new_node == NULL)
 		return ;
 	if (last_node == NULL)
@@ -69,7 +69,7 @@ void	link_new_node(p_list **list, char *buf)
 	new_node->next = NULL;
 }
 
-int	create_list(p_list **list, int fd)
+int	create_list(t_gnl_node **list, int fd)
 {
 	int		char_read;
 	char	*buf;
@@ -98,8 +98,8 @@ int	create_list(p_list **list, int fd)
 
 char	*get_next_line(int fd)
 {
-	static p_list	*list = NULL;
-	char			*next_line;
+	static t_gnl_node	*list = NULL;
+	char				*next_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);

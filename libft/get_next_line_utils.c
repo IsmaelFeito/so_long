@@ -6,13 +6,13 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 15:54:33 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/06/04 16:25:45 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/08 23:54:37 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-int	find_newline(p_list *list)
+int	find_newline(t_gnl_node *list)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ int	find_newline(p_list *list)
 	return (0);
 }
 
-p_list	*find_last_node(p_list *list)
+t_gnl_node	*find_last_node(t_gnl_node *list)
 {
 	if (list == NULL)
 		return (NULL);
@@ -41,7 +41,7 @@ p_list	*find_last_node(p_list *list)
 	return (list);
 }
 
-void	copy_str(p_list *list, char *str)
+void	copy_str(t_gnl_node *list, char *str)
 {
 	int	i;
 	int	j;
@@ -67,7 +67,7 @@ void	copy_str(p_list *list, char *str)
 	str[j] = '\0';
 }
 
-int	len_to_newline(p_list *list)
+int	len_to_newline(t_gnl_node *list)
 {
 	int	i;
 	int	len;
@@ -93,9 +93,9 @@ int	len_to_newline(p_list *list)
 	return (len);
 }
 
-void	free_nodes(p_list **list, p_list *clean_node, char *buf)
+void	free_nodes(t_gnl_node **list, t_gnl_node *clean_node, char *buf)
 {
-	p_list	*temp;
+	t_gnl_node	*temp;
 
 	if (*list == NULL)
 		return ;

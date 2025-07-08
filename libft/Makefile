@@ -10,7 +10,7 @@ SOURCES =		ft_isdigit.c ft_memset.c ft_strdup.c ft_strncmp.c \
 				ft_isascii.c ft_memmove.c ft_strchr.c ft_strmapi.c ft_toupper.c \
 				ft_putchar_fd.c ft_putstr_fd.c ft_putendl_fd.c ft_putnbr_fd.c freedom.c \
 				ft_sqrt.c ft_split_pipex.c ft_cleaner.c get_next_line.c get_next_line_utils.c \
-				ft_count_file_lines.c ft_double_freedom.c
+				ft_count_file_lines.c ft_double_freedom.c ft_print_matrix.c
 
 OBJECTS = $(SOURCES:.c=.o)
 

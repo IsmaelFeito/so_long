@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_print_matrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 00:01:08 by ifeito-m         ###   ########.fr       */
+/*   Created: 2025/06/19 15:00:02 by ifeito-m          #+#    #+#             */
+/*   Updated: 2025/07/08 23:36:15 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "../includes/libft.h"
 
-# include "../includes/libft.h"
-
-typedef struct s_game
+void	ft_print_matrix(char **matrix)
 {
-	char	**map;
-	int		total_coins;
-	int		count_coins;
-	int		steps;
-	int		is_colected;
-}				t_game;
+	int	i;
 
-void	init_strc_map(char ***map, char **temp_map, int matrix_len);
-
-#endif
+	i = 0;
+	if (!matrix)
+	{
+		ft_putstr_fd("(null)\n", 1);
+		return ;
+	}
+	while (matrix[i])
+	{
+		ft_putstr_fd(matrix[i++], 1);
+	}
+}
