@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 00:01:08 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/09 03:31:59 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 typedef struct s_game
 {
 	char	**map;
-	int		total_coins;
+	int		height;
+	int		wide;
 	int		count_coins;
 	int		steps;
 	int		is_colected;
+	int		total_coins;
 }				t_game;
 
-void	init_strc_map(char ***map, char **temp_map, int matrix_len);
-
+void		clean_game(t_game *game);
+void		init_game_data(t_game *game);
+int	validate_extension(const char *map_name);
 #endif

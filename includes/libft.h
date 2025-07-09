@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:18:41 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 01:03:29 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/09 03:45:04 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,9 @@ t_list		*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 void		freedom(void **ptr);
 int			ft_sqrt(int nbr);
 int			ft_count_file_lines(const char *file_name);
-void		ft_double_freedom(void ***matrix);
-void		ft_print_matrix(char **matrix);
+void		ft_double_freedom(char ***matrix, int height);
+void		ft_print_matrix(char **matrix, int height);
+void		ft_error(char *message);
 
 //gnl
 int			find_newline(t_gnl_node *list);

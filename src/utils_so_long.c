@@ -6,35 +6,35 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 00:19:41 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/09 03:44:39 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	init_strc_map(char ***map, char **temp_map, int matrix_len)
+int	validate_extension(const char *map_name)
 {
-	int	i;
+	if (ft_strlen(map_name) <= 4 || ft_strncmp(map_name + ft_strlen(map_name) - 4, ".ber", 4) != 0)
+		return (ft_error("Invalid map extension (must be .ber)"), 1);
+	return (0);
+}
 
-	i = 0;
-	*map = malloc(sizeof(char *) * matrix_len);
-	if (!*map)
-	{
-		ft_putstr_fd("Error malloc alocation\n", 2);
-		exit (1);
-	}
-	while (i < matrix_len - 1 && temp_map[i] != NULL)
-	{
-		(*map)[i] = ft_strdup(temp_map[i]);
-		if (!(*map)[i])
-		{
-			ft_putstr_fd("Error malloc copyng\n", 2);
-			while (i-- > 0)
-				free((*map)[i]);
-			freedom((void **)(*map));
-			exit(1);
-		}
-		i++;
-	}
-	(*map)[i] = NULL;
+void	init_game_data(t_game *game)
+{
+	ft_memset(game, 0, sizeof(t_game));
+	game->map = NULL;
+	game->count_coins = 0;
+	game->is_colected = 0;
+	game->steps = 0;
+	game->total_coins = 0;
+	game->height = 0;
+	game->wide = 0;
+}
+
+void	clean_game(t_game *game)
+{
+	if (!game)
+		return ;
+	if (game->map)
+		ft_double_freedom(&game->map, game->height);
 }

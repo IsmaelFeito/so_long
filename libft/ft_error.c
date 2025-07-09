@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_double_freedom.c                                :+:      :+:    :+:   */
+/*   ft_error.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/11 17:58:55 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 03:38:37 by ifeito-m         ###   ########.fr       */
+/*   Created: 2025/07/09 01:46:02 by ifeito-m          #+#    #+#             */
+/*   Updated: 2025/07/09 03:33:23 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-void ft_double_freedom(char ***matrix_ptr, int height)
+void	ft_error(char *message)
 {
-    int i;
-    char **matrix;
-
-    if (!matrix_ptr || !*matrix_ptr)
-        return;
-    
-    matrix = *matrix_ptr;
-    i = 0;
-    while (i < height && matrix[i] != NULL)  // Usar altura y chequear NULL
-    {
-        free(matrix[i]);
-        matrix[i] = NULL;
-        i++;
-    }
-    free(matrix);
-    *matrix_ptr = NULL;
+	if (!message)
+		return ;
+	write(2, "Error:\n", 7);
+	write(2, message, ft_strlen(message));
+	write(2, "\n", 1);
+	exit(EXIT_FAILURE);
 }
