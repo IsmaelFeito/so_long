@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/11 17:58:55 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 03:38:37 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/11 21:34:53 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void ft_double_freedom(char ***matrix_ptr, int height)
     
     matrix = *matrix_ptr;
     i = 0;
-    while (i < height && matrix[i] != NULL)  // Usar altura y chequear NULL
+    while (i < height && matrix[i] != NULL)
     {
         free(matrix[i]);
         matrix[i] = NULL;
