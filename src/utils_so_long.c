@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/11 22:33:04 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/12 01:40:57 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	validate_extension(const char *map_name)
 		return (ft_error("Map name too short"), 1);
 	if (ft_strncmp(map_name + len - 4, ".ber", 4) != 0)
 		return (ft_error("Map must have .ber extension"), 1);
-	if (len == 4 || map_name[len - 5] != '.')
+	if (map_name[len - 5] == '.')
 		return (ft_error("Invalid map name format"), 1);
 	return (0);
 }
@@ -45,5 +45,8 @@ void clean_game(t_game *game)
 	if (!game)
 		return;
 	if (game->map)
+	{
 		ft_double_freedom(&game->map, game->height);
+		game->map = NULL;
+	}
 }
