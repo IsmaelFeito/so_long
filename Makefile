@@ -1,6 +1,6 @@
 NAME = so_long
 
-SRC =   src/main.c src/utils_so_long.c
+SRC =   src/so_long.c src/utils_so_long.c
 
 RM = rm -rf
 CFLAGS = -Werror -Wall -Wextra -g3 -g
