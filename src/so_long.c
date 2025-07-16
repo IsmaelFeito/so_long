@@ -6,24 +6,11 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:25:48 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/15 09:16:51 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/16 03:44:55 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-int validate_map(t_game *game)
-{
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	if (!game)
-		return (1);
-	if (game->map[y][x] != '1')
-	return (0);
-}
 
 static char	*get_full_map_path(const char *map_name)
 {
@@ -103,6 +90,10 @@ int	load_map(t_game *game, const char *map_name)
 		return (clean_game(game), ft_error("Map vablidation failed"), 1);
 	return (0);
 }
+// int	floodfill_map(t_game *game)
+// {
+	
+// }
 
 int	main (int ac, char **av)
 {
@@ -117,7 +108,7 @@ int	main (int ac, char **av)
 		clean_game(&game);
 		return (1);
 	}
-	//game loop function
+	floodfill_map(&game);
 	clean_game(&game);
 	return (0);
 }

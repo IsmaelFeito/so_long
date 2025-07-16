@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/12 01:40:57 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/16 02:30:37 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,17 @@ void clean_game(t_game *game)
 		ft_double_freedom(&game->map, game->height);
 		game->map = NULL;
 	}
+}
+
+int validate_map(t_game *game)
+{
+	int	x;
+	int	y;
+
+	x = 0;
+	y = 0;
+	if (!game)
+		return (1);
+	if (game->map[y][x] != '1')
+	return (0);
 }

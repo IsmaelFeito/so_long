@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/12 01:49:13 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/16 02:30:56 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ typedef struct s_game
 void		clean_game(t_game *game);
 void		init_game_data(t_game *game);
 int			validate_extension(const char *map_name);
+int			validate_map(t_game *game);
 #endif
