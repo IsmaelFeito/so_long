@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/16 02:30:37 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/17 03:36:43 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,6 @@ int	validate_extension(const char *map_name)
 	if (map_name[len - 5] == '.')
 		return (ft_error("Invalid map name format"), 1);
 	return (0);
-}
-
-void	init_game_data(t_game *game)
-{
-	ft_memset(game, 0, sizeof(t_game));
-	game->map = NULL;
-	game->count_coins = 0;
-	game->is_colected = 0;
-	game->steps = 0;
-	game->total_coins = 0;
-	game->height = 0;
-	game->wide = 0;
 }
 
 void clean_game(t_game *game)
@@ -61,5 +49,13 @@ int validate_map(t_game *game)
 	if (!game)
 		return (1);
 	if (game->map[y][x] != '1')
+		return (0);
+	return (0);
+
+}
+
+int	floodfill_map(t_game *game)
+{
+	game->count_coins=0;
 	return (0);
 }

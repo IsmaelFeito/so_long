@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:25:48 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/16 03:44:55 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/17 04:02:54 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,9 @@ static int load_map_contents(t_game *game, char *map_path)
 		line = get_next_line(fd);
 	}
 	game->map[game->height] = NULL;
+	game->wide = ft_strlen(game->map[0]) - 1;
 	close(fd);
-	// ft_print_matrix(game->map, game->height);//comentar :) / debug
+	ft_print_matrix(game->map, game->height);//comentar :) / debug
 	return (0);
 }
 
@@ -90,25 +91,42 @@ int	load_map(t_game *game, const char *map_name)
 		return (clean_game(game), ft_error("Map vablidation failed"), 1);
 	return (0);
 }
-// int	floodfill_map(t_game *game)
-// {
-	
-// }
+void	run_game(t_game *game)
+{
+	int	x;
+	int	y;
 
-int	main (int ac, char **av)
+	y = 0;
+	while (y < game->height * 32)
+	{
+		x = 0;
+		while (x < game->wide * 32)
+		{
+			mlx_pixel_put(game->mlx_ptr, game->mlx_wnd, x, y, 0xFF0000);
+			x++;
+		}
+		y++;
+	}
+	mlx_loop(game->mlx_ptr);
+}
+
+int	main(int ac, char **av)
 {
 	t_game	game;
 
 	if (ac != 2)
 		return(ft_error("Usage: ./so_long map_file.ber"), 1);
-	init_game_data(&game);
-
+	ft_memset(&game, 0, sizeof(t_game));
 	if (load_map(&game, av[1]) != 0)
 	{
 		clean_game(&game);
 		return (1);
 	}
 	floodfill_map(&game);
+	printf("WIDTH: %d | HEIGHT: %d\n", game.wide, game.height);
+	game.mlx_ptr = mlx_init();
+	game.mlx_wnd = mlx_new_window(game.mlx_ptr, game.wide * 32, game.height * 32, "so_long");
+	run_game(&game);
 	clean_game(&game);
 	return (0);
 }
