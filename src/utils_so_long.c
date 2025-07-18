@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/17 03:36:43 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/18 02:36:45 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,18 +28,20 @@ int	validate_extension(const char *map_name)
 	return (0);
 }
 
-void clean_game(t_game *game)
+void	clean_game(t_game *game)
 {
 	if (!game)
-		return;
+		return ;
 	if (game->map)
 	{
 		ft_double_freedom(&game->map, game->height);
 		game->map = NULL;
 	}
+	game->height = 0;
+	game->wide = 0;
 }
 
-int validate_map(t_game *game)
+int	validate_map(t_game *game)
 {
 	int	x;
 	int	y;
@@ -51,11 +53,27 @@ int validate_map(t_game *game)
 	if (game->map[y][x] != '1')
 		return (0);
 	return (0);
-
 }
 
 int	floodfill_map(t_game *game)
 {
-	game->count_coins=0;
+	game->total_coins = 0;
+	return (0);
+}
+
+int	check_wide_n_asignation(char **map)
+{
+	size_t	temp;
+
+	temp = ft_strlen(*map++);
+	while (*map)
+	{
+		// printf("%li\n", temp);
+		if (ft_strlen(*map) != temp)
+			return (1);
+		temp = ft_strlen(*map++);
+	}
+	// printf("%li\n", temp);
+	
 	return (0);
 }
