@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_so_long.c                                    :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/18 02:36:45 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/22 02:36:52 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,52 +28,31 @@ int	validate_extension(const char *map_name)
 	return (0);
 }
 
-void	clean_game(t_game *game)
-{
-	if (!game)
-		return ;
-	if (game->map)
-	{
-		ft_double_freedom(&game->map, game->height);
-		game->map = NULL;
-	}
-	game->height = 0;
-	game->wide = 0;
-}
-
 int	validate_map(t_game *game)
 {
 	int	x;
 	int	y;
 
-	x = 0;
 	y = 0;
-	if (!game)
-		return (1);
-	if (game->map[y][x] != '1')
-		return (0);
+	while (y < game->height)
+	{
+		x = 0;
+		while (x < game->wide)
+		{
+			if ((y == 0 || y == game->height - 1 || x == 0 || x == game->wide - 1)
+				&& game->map[y][x] != '1')
+				return (ft_error("Map not surrounded by walls"), 1);
+			if (!ft_strchr("01PEC", game->map[y][x]))
+				return (ft_error("Invalid character in map"), 1);
+			x++;
+		}
+		y++;
+	}
 	return (0);
 }
 
 int	floodfill_map(t_game *game)
 {
 	game->total_coins = 0;
-	return (0);
-}
-
-int	check_wide_n_asignation(char **map)
-{
-	size_t	temp;
-
-	temp = ft_strlen(*map++);
-	while (*map)
-	{
-		// printf("%li\n", temp);
-		if (ft_strlen(*map) != temp)
-			return (1);
-		temp = ft_strlen(*map++);
-	}
-	// printf("%li\n", temp);
-	
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:06:50 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/18 02:08:33 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/18 23:39:53 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 void	do_move(t_game *game, char pos, int dir)
 {
-	
+	if (game && pos && dir)
+		return ;
+	return ;
 }
 
 int	hooks(int key, t_game *game)

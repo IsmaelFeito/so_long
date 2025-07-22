@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 01:46:02 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/17 03:13:55 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/22 01:09:08 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,4 @@ void	ft_error(char *message)
 	write(2, "Error:\n", 7);
 	write(2, message, ft_strlen(message));
 	write(2, "\n", 1);
-	exit(EXIT_FAILURE);
 }

@@ -6,29 +6,37 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 01:10:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/18 01:34:39 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/22 01:30:21 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	clean_mlx_resources(t_game *game)
+void clean_mlx_resources(t_game *game)
 {
-	if (game->mlx_wnd)
-	{
-		mlx_clear_window(game->mlx_ptr, game->mlx_wnd);
-		mlx_destroy_window(game->mlx_ptr, game->mlx_wnd);
-		game->mlx_wnd = NULL;
-	}
-	// Aquí deberías liberar también cualquier imagen/textura que hayas cargado
-	// Ejemplo:
-	// if (game->player_img)
-	//     mlx_destroy_image(game->mlx_ptr, game->player_img);
-	if (game->mlx_ptr)
-	{
-		mlx_destroy_display(game->mlx_ptr);
-		freedom(game->mlx_ptr);
-	}
+    if (!game->mlx_ptr)
+        return;
+        
+    if (game->mlx_wnd)
+    {
+        mlx_clear_window(game->mlx_ptr, game->mlx_wnd);
+        mlx_destroy_window(game->mlx_ptr, game->mlx_wnd);
+    }
+    
+    // Liberar texturas si existen
+    if (game->object)
+    {
+        if (game->object->wall)
+            mlx_destroy_image(game->mlx_ptr, game->object->wall);
+        // Repetir para otras texturas...
+        free(game->object);
+    }
+    
+    if (game->mlx_ptr)
+    {
+        mlx_destroy_display(game->mlx_ptr);
+        free(game->mlx_ptr);
+    }
 }
 
 void	clean_game(t_game *game)
