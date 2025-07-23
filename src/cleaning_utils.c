@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 01:10:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 03:43:37 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/23 03:52:38 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	free_textures(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->object->exit);
 	if (game->object->coin)
 		mlx_destroy_image(game->mlx_ptr, game->object->coin);
+
+	game->object->wall = NULL;
+	game->object->floor = NULL;
+	game->object->player = NULL;
+	game->object->exit = NULL;
+	game->object->coin = NULL;
 }
 
 void clean_mlx_resources(t_game *game)
@@ -61,9 +67,12 @@ void	clean_game(t_game *game)
 	game->e_pos_y = 0;
 	game->p_pos_x = 0;
 	game->p_pos_y = 0;
-	game->total_coins = 0;
+	game->wnd_height = 0;
+	game->wnd_wide = 0;
 	game->height = 0;
 	game->wide = 0;
-	game->steps = 0;
+	game->total_coins = 0;
+	game->coll_coins = 0;
 	game->is_colected = 0;
+	game->steps = 0;
 }
