@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 00:31:13 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/23 03:28:07 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_game
 	int		total_coins;
 	int		height;
 	int		wide;
+	int		wnd_height;
+	int		wnd_wide;
 	int		steps;
 	int		is_colected;
 	t_object	*object;
@@ -55,8 +57,9 @@ typedef struct s_game
 
 
 //loading map
-int	load_map(t_game *game, const char *map_name);
-int count_objs(char c, t_game *game);
+int			load_map(t_game *game, const char *map_name);
+int 		count_objs(char c, t_game *game);
+void		save_location(t_game *game, char c, int y, int x);
 
 //clean game and exiting game
 void		clean_mlx_resources(t_game *game);
@@ -67,7 +70,7 @@ int			exit_game(t_game *game);
 int			validate_extension(const char *map_name);
 int			validate_map(t_game *game);
 int			floodfill_map(t_game *game);
-int			check_wide_n_count_objs(t_game *game);
+int			check_map(t_game *game);
 
 //render images
 int			run_game(t_game *game);

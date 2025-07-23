@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/22 02:36:52 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/23 03:26:46 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,27 +28,20 @@ int	validate_extension(const char *map_name)
 	return (0);
 }
 
-int	validate_map(t_game *game)
+void	save_location(t_game *game, char c, int y, int x)
 {
-	int	x;
-	int	y;
-
-	y = 0;
-	while (y < game->height)
+	if (c == 'C')
+		return ;
+	else if (c == 'P')
 	{
-		x = 0;
-		while (x < game->wide)
-		{
-			if ((y == 0 || y == game->height - 1 || x == 0 || x == game->wide - 1)
-				&& game->map[y][x] != '1')
-				return (ft_error("Map not surrounded by walls"), 1);
-			if (!ft_strchr("01PEC", game->map[y][x]))
-				return (ft_error("Invalid character in map"), 1);
-			x++;
-		}
-		y++;
+		game->p_pos_y = y;
+		game->p_pos_x = x;
 	}
-	return (0);
+	else if (c == 'E')
+	{
+		game->e_pos_y = y;
+		game->e_pos_x = x;
+	}
 }
 
 int	floodfill_map(t_game *game)

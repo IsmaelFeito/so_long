@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/19 15:00:02 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/19 01:29:19 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/23 02:59:40 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void ft_print_matrix(char **matrix, int height)
             write(1, &matrix[i][j], 1);
             j++;
         }
-        // write(1, "\n", 1);
+        write(1, "\n", 1);
         i++;
     }
 }

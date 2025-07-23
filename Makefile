@@ -32,7 +32,7 @@
 NAME = so_long
 
 SRC = 	src/main.c src/utils.c src/cleaning_utils.c \
-		src/get_map.c src/moves.c src/renders.c 
+		src/get_map.c src/moves.c src/renders.c src/validate_map.c
 OBJ = $(SRC:.c=.o)
 
 CC = cc
