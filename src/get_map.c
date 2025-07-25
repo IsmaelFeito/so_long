@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:33:07 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 03:01:18 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 03:00:19 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_map(t_game *game)
 	
 	return (0);
 }
-//save map on the struct game
+
 static int	save_map(t_game *game, char *map_path)
 {
 	int		fd;
@@ -104,6 +104,7 @@ int	load_map(t_game *game, const char *map_name)
 		return (ft_error("2 Invalid map path or extension"), 1);
 	if (save_map(game, full_path) != 0)
 		return (ft_error("Error charging map content"), 1);
+	count_objects(game->map, game->wide, game->height, game);
 	if (validate_map(game) != 0)
 		return (clean_game(game), ft_error("Map vablidation failed"), 1);
 	return (0);

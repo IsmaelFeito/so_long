@@ -6,11 +6,65 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 03:26:46 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 02:49:23 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	free_matrix(t_game *game, int **visited)
+{
+	int	i;
+
+	i = 0;
+	while (i < game->height)
+	{
+		free(visited[i]);
+		i++;
+	}
+	free(visited);
+}
+
+void	flood_fill(int x, int y, t_game *game, int **visited)
+{
+	if (x < 0 || x >= game->height || y < 0 || y >= game->wide || \
+		visited[x][y] || game->map[x][y] == '1')
+		return ;
+	visited[x][y] = 1;
+	flood_fill(x - 1, y, game, visited);
+	flood_fill(x + 1, y, game, visited);
+	flood_fill(x, y - 1, game, visited);
+	flood_fill(x, y + 1, game, visited);
+}
+
+void	locate_target(t_game *game, int *found_tar, int **visited, char target)
+{
+	int	i;
+	int	j;
+	int	is_accessible;
+
+	i = 0;
+	is_accessible = 1;
+	while (i < game->height)
+	{
+		j = 0;
+		while (j < game->wide)
+		{
+			if (game->map[i][j] == target)
+			{
+				if (!visited[i][j])
+					is_accessible = 0;
+				else
+					(*found_tar)++;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (!is_accessible)
+		*found_tar = 0;
+	free_matrix(game, visited);
+}
 
 int	validate_extension(const char *map_name)
 {
@@ -42,10 +96,4 @@ void	save_location(t_game *game, char c, int y, int x)
 		game->e_pos_y = y;
 		game->e_pos_x = x;
 	}
-}
-
-int	floodfill_map(t_game *game)
-{
-	game->total_coins = 0;
-	return (0);
 }

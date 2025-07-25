@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 01:22:36 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 03:28:52 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 03:06:07 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,41 +50,71 @@ int	check_walls(t_game *game)
 
 int	check_components(t_game *game, char c)
 {
-	int	x;
-	int	y;
-	int	count;
+	int	**visited;
+	int	i;
+	int	j;
+	int	found;
 
-	count = 0;
-	y = 0;
-	printf("%i  %i\n", game->height,game->wide);
-	while (y < game->height)
+	i = 0;
+	found = 0;
+	visited = malloc(game->height * sizeof(int *));
+	while (i < game->height)
 	{
-		x = 0;
-		while (x < game->wide)
+		visited[i] = malloc(game->wide * sizeof(int));
+		j = 0;
+		while (j < game->wide)
 		{
-			if (game->map[y][x] == c)
-			{	
-				save_location(game, c, y, x);
-				count++;
-			}
-			x++;
+			visited[i][j] = 0;
+			j++;
 		}
-		y++;
+		i++;
 	}
-	printf("%c -> %i\n", c, count);
-	return (count);
+	flood_fill(game->p_pos_x, game->p_pos_y, game, visited);
+	locate_target(game, &found, visited, c);
+	return (found > 0);
 }
 
 int	validate_map(t_game *game)
 {
+	if (game->e_count != 1)
+		return (ft_error("exit count"), 1);
+	if (game->p_count != 1)
+		return (ft_error("p count"), 1);
+	if (game->coins == 0)
+		return (ft_error("no coins"), 1);
 	if (check_shape(game) != 0)
 		return (ft_error("Game's shape isn't rectangular"), 1);
-	else if (check_walls(game) != 0)
+	if (check_walls(game) != 0)
 		return (ft_error("Map must be surrounded by walls"), 1);
-	else if ((check_components(game, 'P') != 1) || (check_components(game, 'E') != 1) ||
-				(check_components(game, 'C') < 1))
-		return (ft_error("Map must have at least 1 coin and exactly 1 player and 1 exit"), 1);
-	// else
-	// 	check_valid_path(t_game *game);
+	if (!check_components(game, 'P') || !check_components(game, 'E'))
+		return (ft_error("Exit is not accesible"), 1);
+	if (!check_components(game, 'C'))
+		return (ft_error("EVERY Coin should be accessible!"), 1);
 	return (0);
+}
+
+void	count_objects(char **map, int width, int height, t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	game->coins = 0;
+	game->p_count = 0;
+	game->e_count = 0;
+	while (i < height)
+	{
+		j = 0;
+		while (j < width)
+		{
+			if (map[i][j] == 'P')
+				game->p_count++;
+			if (map[i][j] == 'E')
+				game->e_count++;
+			if (map[i][j] == 'C')
+				game->coins++;
+			j++;
+		}
+		i++;
+	}
 }
