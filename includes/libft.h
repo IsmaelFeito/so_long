@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 15:18:41 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/09 03:45:04 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 02:10:59 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <fcntl.h>
+# include <stdarg.h>
 
 //bonus lift 
 typedef struct s_list
@@ -103,4 +104,14 @@ void		clean_list(t_gnl_node **list);
 char		*get_next_line(int fd);
 void		free_nodes(t_gnl_node **list, t_gnl_node *clean_node, char *buf);
 int			create_list(t_gnl_node **list, int fd);
+
+//ft_printf
+int     ft_printf(char *str, ...);
+int     letter(char c, va_list vargs);
+int     ft_put_hexa(unsigned int n, int upper);
+int     ft_put_uns(unsigned int n);
+int     ft_putnbr(int n);
+int     ft_putstr(char *str);
+int     ft_putchar(char c);
+int     ft_put_ptr(void *p);
 #endif

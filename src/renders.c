@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:02:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/22 01:31:08 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 01:26:46 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,10 @@ void	load_textures(t_game *game, void **object, char *path, char c)
 
 int	run_game(t_game *game)
 {
-	// Asignar memoria para los objetos del juego
 	game->object = malloc(sizeof(t_object));
 	if (!game->object)
 		return (ft_error("Game allocation failed"), 1);
 	ft_memset(game->object, 0, sizeof(t_object));
-	// Cargar texturas de 32x32 píxeles
 	load_textures(game, &game->object->wall, "./textures/wall.xpm", '1');
 	load_textures(game, &game->object->player, "./textures/player.xpm", 'P');
 	load_textures(game, &game->object->floor, "./textures/floor.xpm", '0');
@@ -56,8 +54,7 @@ int	run_game(t_game *game)
 
 int	exit_game(t_game *game)
 {
-	mlx_destroy_window(game->mlx_ptr, game->mlx_wnd);
+	clean_game(game);
 	printf("You left the game :( %d\n", game->total_coins);
-	// free_game(game);
 	exit(EXIT_SUCCESS);
 }

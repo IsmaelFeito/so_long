@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 03:51:43 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 01:34:10 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct s_game
 	int		wnd_wide;
 	int		steps;
 	int		is_colected;
-	int		coll_coins;
+	int		coins;
 	t_object	*object;
 }				t_game;
 

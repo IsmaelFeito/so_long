@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 01:10:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/23 03:52:38 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 01:34:10 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	clean_game(t_game *game)
 		ft_double_freedom(&game->map, game->height);
 		game->map = NULL;
 	}
+	free(game->object);
 	game->mlx_ptr = NULL;
 	game->mlx_wnd = NULL;
 	game->e_pos_x = 0;
@@ -72,7 +73,7 @@ void	clean_game(t_game *game)
 	game->height = 0;
 	game->wide = 0;
 	game->total_coins = 0;
-	game->coll_coins = 0;
+	game->coins = 0;
 	game->is_colected = 0;
 	game->steps = 0;
 }
