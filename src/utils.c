@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 02:49:23 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 04:02:53 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,23 @@ void	free_matrix(t_game *game, int **visited)
 
 void	flood_fill(int x, int y, t_game *game, int **visited)
 {
+	printf("floodfill\nx: %i y: %i \ng_wide:%i n h_heith: %i, visited:%i, map: %c\n", x, y, game->wide, game->height, visited[x][y], game->map[x][y]);
 	if (x < 0 || x >= game->height || y < 0 || y >= game->wide || \
 		visited[x][y] || game->map[x][y] == '1')
 		return ;
 	visited[x][y] = 1;
-	flood_fill(x - 1, y, game, visited);
+	// printf("pr_mat\n");
+	// ft_print_matrix((char **)visited, game->height);
+	printf("visited:  %i\n", visited[x][y]);
 	flood_fill(x + 1, y, game, visited);
+	printf("visited:  %i\n", visited[x][y]);
+	flood_fill(x - 1, y, game, visited);
+
+	printf("visited:  %i\n", visited[x][y]);
 	flood_fill(x, y - 1, game, visited);
+	printf("visited:  %i\n", visited[x][y]);
 	flood_fill(x, y + 1, game, visited);
+	
 }
 
 void	locate_target(t_game *game, int *found_tar, int **visited, char target)

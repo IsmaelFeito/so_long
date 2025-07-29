@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 01:22:36 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 03:06:07 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/25 04:02:08 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	check_components(t_game *game, char c)
 	int	j;
 	int	found;
 
+	printf("\ncheck  comp: %c\n", c);
 	i = 0;
 	found = 0;
 	visited = malloc(game->height * sizeof(int *));
@@ -65,12 +66,15 @@ int	check_components(t_game *game, char c)
 		while (j < game->wide)
 		{
 			visited[i][j] = 0;
+			printf("%i", visited[i][j]);
 			j++;
 		}
 		i++;
+		printf("\n");
 	}
 	flood_fill(game->p_pos_x, game->p_pos_y, game, visited);
 	locate_target(game, &found, visited, c);
+	printf("target: %c: %i\n", c, found);
 	return (found > 0);
 }
 
@@ -80,16 +84,16 @@ int	validate_map(t_game *game)
 		return (ft_error("exit count"), 1);
 	if (game->p_count != 1)
 		return (ft_error("p count"), 1);
-	if (game->coins == 0)
+	if (game->total_coins == 0)
 		return (ft_error("no coins"), 1);
 	if (check_shape(game) != 0)
 		return (ft_error("Game's shape isn't rectangular"), 1);
 	if (check_walls(game) != 0)
 		return (ft_error("Map must be surrounded by walls"), 1);
-	if (!check_components(game, 'P') || !check_components(game, 'E'))
-		return (ft_error("Exit is not accesible"), 1);
 	if (!check_components(game, 'C'))
 		return (ft_error("EVERY Coin should be accessible!"), 1);
+	if (!check_components(game, 'P') || !check_components(game, 'E'))
+		return (ft_error("Exit is not accesible"), 1);
 	return (0);
 }
 
@@ -108,11 +112,11 @@ void	count_objects(char **map, int width, int height, t_game *game)
 		while (j < width)
 		{
 			if (map[i][j] == 'P')
-				game->p_count++;
+				printf("p: %i" ,game->p_count++);
 			if (map[i][j] == 'E')
-				game->e_count++;
+				printf("e: %i" ,game->e_count++);
 			if (map[i][j] == 'C')
-				game->coins++;
+				printf("c: %i" ,game->total_coins++);
 			j++;
 		}
 		i++;
