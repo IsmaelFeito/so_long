@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:33:07 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 03:22:37 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:11:40 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	check_map(t_game *game)
 		if (ft_strlen(game->map[i++]) != temp)
 			return (ft_error("Map must be rectangular"), 1);
 	}
-	game->wide = ft_strlen(game->map[0]);
+	game->width = ft_strlen(game->map[0]);
 	
 	return (0);
 }
@@ -87,7 +87,7 @@ static int	save_map(t_game *game, char *map_path)
 	}
 	game->map[game->height] = NULL;
 	close(fd);
-	game->wide = ft_strlen(game->map[0]);
+	game->width = ft_strlen(game->map[0]);
 	ft_print_matrix(game->map, game->height);//quitar / debug
 	return (free(map_path), 0);
 }
@@ -104,7 +104,7 @@ int	load_map(t_game *game, const char *map_name)
 		return (ft_error("2 Invalid map path or extension"), 1);
 	if (save_map(game, full_path) != 0)
 		return (ft_error("Error charging map content"), 1);
-	count_objects(game->map, game->wide, game->height, game);
+	count_objects(game->map, game->width, game->height, game);
 	if (validate_map(game) != 0)
 		return (clean_game(game), ft_error("Map vablidation failed"), 1);
 	return (0);

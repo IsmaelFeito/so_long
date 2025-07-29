@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 01:22:36 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 04:02:08 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:28:18 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_walls(t_game *game)
     int y;
 
     x = -1;
-    while (++x < game->wide)
+    while (++x < game->width)
     {
         if (game->map[0][x] != '1' || game->map[game->height-1][x] != '1')
 			return (1);
@@ -42,7 +42,7 @@ int	check_walls(t_game *game)
     y = -1;
     while (++y < game->height)
     {
-        if (game->map[y][0] != '1' || game->map[y][game->wide-1] != '1')
+        if (game->map[y][0] != '1' || game->map[y][game->width-1] != '1')
 			return (1);
     }
 	return (0);
@@ -61,9 +61,9 @@ int	check_components(t_game *game, char c)
 	visited = malloc(game->height * sizeof(int *));
 	while (i < game->height)
 	{
-		visited[i] = malloc(game->wide * sizeof(int));
+		visited[i] = malloc(game->width * sizeof(int));
 		j = 0;
-		while (j < game->wide)
+		while (j < game->width)
 		{
 			visited[i][j] = 0;
 			printf("%i", visited[i][j]);
@@ -72,7 +72,7 @@ int	check_components(t_game *game, char c)
 		i++;
 		printf("\n");
 	}
-	flood_fill(game->p_pos_x, game->p_pos_y, game, visited);
+	flood_fill(game, game->p_pos_x, game->p_pos_y, visited);
 	locate_target(game, &found, visited, c);
 	printf("target: %c: %i\n", c, found);
 	return (found > 0);
