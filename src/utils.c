@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 00:27:44 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:25:33 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,29 @@ void	free_matrix(t_game *game, int **visited)
 
 void	flood_fill( t_game *game, int x, int y, int **visited)
 {
-    // Si la posición está fuera del mapa, retorna
+	// printf("Flood fill en [%d][%d] = %c\n", x, y, game->map[y][x]);
+    // Verifica límites del mapa
     if (x < 0 || y < 0 || x >= game->width || y >= game->height)
         return;
     
-    // Si ya fue visitado o es un muro ('1'), retorna
-    if (visited[y][x] == '1' || game->map[y][x] == '1')
+    // Verifica si ya fue visitado o es un muro
+    if (visited[y][x] || game->map[y][x] == '1')
         return;
     
-    // Marca como visitado (puedes usar una matriz auxiliar `visited`)
-    visited[y][x] = '1';
+    // Marca como visitado
+    visited[y][x] = 1;
     
-    // Si encuentra una moneda ('C'), incrementa el contador
+    // Actualiza contadores
     if (game->map[y][x] == 'C')
-        game->coins_reachable++;
-    
-    // Si encuentra la salida ('E'), marca como accesible
+        ft_printf("nbr coins: %i\n", game->coins++);
     if (game->map[y][x] == 'E')
         game->exit_reachable = 1;
     
-    flood_fill(game, x + 1, y, visited); // Derecha
-    flood_fill(game, x - 1, y, visited); // Izquierda
-    flood_fill(game, x, y + 1, visited); // Abajo
-    flood_fill(game, x, y - 1, visited); // Arriba
+    // Expansión recursiva
+    flood_fill(game, x + 1, y, visited);
+    flood_fill(game, x - 1, y, visited);
+    flood_fill(game, x, y + 1, visited);
+    flood_fill(game, x, y - 1, visited);
 	
 }
 
