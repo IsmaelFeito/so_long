@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:02:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 02:35:13 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:11:40 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	load_textures(t_game *game, void **object, char *path, char c)
 	while (i < game->height / 32)
 	{
 		j = 0;
-		while (j < game->wide / 32)
+		while (j < game->width / 32)
 		{
 			if (game->map[i][j] == c)
 			{

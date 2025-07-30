@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 01:10:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 02:59:04 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:11:40 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	clean_game(t_game *game)
 	game->p_pos_x = 0;
 	game->p_pos_y = 0;
 	game->height = 0;
-	game->wide = 0;
+	game->width = 0;
 	game->total_coins = 0;
 	game->coins = 0;
 	game->is_colected = 0;

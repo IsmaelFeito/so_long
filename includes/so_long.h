@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 03:00:07 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 00:26:48 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,15 @@ typedef struct s_game
 	int		p_pos_x;
 	int		p_pos_y;
 	int		total_coins;
+	int		coins;
+	int		coins_reachable;
+	int		exit_reachable;
 	int		height;
-	int		wide;
+	int		width;
 	int		e_count;
 	int		p_count;
 	int		steps;
 	int		is_colected;
-	int		coins;
 	t_object	*object;
 }				t_game;
 
@@ -70,7 +72,7 @@ int			exit_game(t_game *game);
 //validating stuff
 int			validate_extension(const char *map_name);
 int			validate_map(t_game *game);
-void		flood_fill(int x, int y, t_game *game, int **visited);
+void		flood_fill(t_game *game, int x, int y, int **visited);
 int			check_map(t_game *game);
 void		locate_target(t_game *game, int *found_tar, int **visited, char target);
 

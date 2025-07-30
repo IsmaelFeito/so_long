@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 01:22:36 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/25 04:02:08 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 01:18:49 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_walls(t_game *game)
     int y;
 
     x = -1;
-    while (++x < game->wide)
+    while (++x < game->width)
     {
         if (game->map[0][x] != '1' || game->map[game->height-1][x] != '1')
 			return (1);
@@ -42,7 +42,7 @@ int	check_walls(t_game *game)
     y = -1;
     while (++y < game->height)
     {
-        if (game->map[y][0] != '1' || game->map[y][game->wide-1] != '1')
+        if (game->map[y][0] != '1' || game->map[y][game->width-1] != '1')
 			return (1);
     }
 	return (0);
@@ -61,9 +61,9 @@ int	check_components(t_game *game, char c)
 	visited = malloc(game->height * sizeof(int *));
 	while (i < game->height)
 	{
-		visited[i] = malloc(game->wide * sizeof(int));
+		visited[i] = ft_calloc(game->width, sizeof(int));
 		j = 0;
-		while (j < game->wide)
+		while (j < game->width)
 		{
 			visited[i][j] = 0;
 			printf("%i", visited[i][j]);
@@ -72,7 +72,7 @@ int	check_components(t_game *game, char c)
 		i++;
 		printf("\n");
 	}
-	flood_fill(game->p_pos_x, game->p_pos_y, game, visited);
+	flood_fill(game, game->p_pos_x, game->p_pos_y, visited);
 	locate_target(game, &found, visited, c);
 	printf("target: %c: %i\n", c, found);
 	return (found > 0);
@@ -103,20 +103,23 @@ void	count_objects(char **map, int width, int height, t_game *game)
 	int	j;
 
 	i = 0;
-	game->coins = 0;
-	game->p_count = 0;
-	game->e_count = 0;
 	while (i < height)
 	{
 		j = 0;
 		while (j < width)
 		{
 			if (map[i][j] == 'P')
-				printf("p: %i" ,game->p_count++);
+			{
+				save_location(game, 'P', i, j);
+				game->p_count++;
+			}
 			if (map[i][j] == 'E')
-				printf("e: %i" ,game->e_count++);
+			{
+				save_location(game, 'E', i, j);
+				game->e_count++;
+			}
 			if (map[i][j] == 'C')
-				printf("c: %i" ,game->total_coins++);
+				printf("c: %i " , ++game->total_coins);
 			j++;
 		}
 		i++;
