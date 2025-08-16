@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 01:25:33 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 13:58:22 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,31 @@ void	free_matrix(t_game *game, int **visited)
 	free(visited);
 }
 
-void	flood_fill( t_game *game, int x, int y, int **visited)
+void flood_fill(t_game *game, int x, int y, int **visited)
 {
-	// printf("Flood fill en [%d][%d] = %c\n", x, y, game->map[y][x]);
-    // Verifica límites del mapa
     if (x < 0 || y < 0 || x >= game->width || y >= game->height)
         return;
     
-    // Verifica si ya fue visitado o es un muro
     if (visited[y][x] || game->map[y][x] == '1')
         return;
     
-    // Marca como visitado
     visited[y][x] = 1;
-    
-    // Actualiza contadores
+
     if (game->map[y][x] == 'C')
-        ft_printf("nbr coins: %i\n", game->coins++);
-    if (game->map[y][x] == 'E')
-        game->exit_reachable = 1;
-    
-    // Expansión recursiva
+    {
+        game->coins++;
+        // ft_printf("Moneda encontrada en [%d][%d]. Total: %d\n", x, y, game->coins);
+    }
+    else if (game->map[y][x] == 'E')
+    {
+        game->exit_reachable++;
+        // ft_printf("Salida encontrada en [%d][%d].\n", x, y);
+    }
+
     flood_fill(game, x + 1, y, visited);
     flood_fill(game, x - 1, y, visited);
     flood_fill(game, x, y + 1, visited);
     flood_fill(game, x, y - 1, visited);
-	
 }
 
 void	locate_target(t_game *game, int *found_tar, int **visited, char target)

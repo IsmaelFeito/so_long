@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:06:50 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 01:21:11 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 13:53:53 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	do_move(t_game *game, char pos, int dir)
 
 int	hooks(int key, t_game *game)
 {
+	printf("hook\n");
 	if (key == ESC)
 		exit_game(game);
 	if (key == UP_ARROW || key == W_KEY)

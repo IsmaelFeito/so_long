@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/23 01:22:36 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 01:18:49 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 02:11:52 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,16 @@ int	check_components(t_game *game, char c)
 		while (j < game->width)
 		{
 			visited[i][j] = 0;
-			printf("%i", visited[i][j]);
+			// printf("%i", visited[i][j]);
 			j++;
 		}
 		i++;
-		printf("\n");
+		// printf("\n");
 	}
 	flood_fill(game, game->p_pos_x, game->p_pos_y, visited);
 	locate_target(game, &found, visited, c);
 	printf("target: %c: %i\n", c, found);
+	// free_matrix(game, visited);
 	return (found > 0);
 }
 

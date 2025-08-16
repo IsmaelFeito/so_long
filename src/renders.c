@@ -6,11 +6,44 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:02:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 00:11:40 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 14:18:26 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
+
+void	draw_map(t_game *game)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (y < game->height) // altura del mapa
+	{
+		x = 0;
+		while (x < game->width) // anchura del mapa
+		{
+			if (game->map[y][x] == '1')
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_wnd,
+					game->object->wall, x * 32, y * 32);
+			else if (game->map[y][x] == '0')
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_wnd,
+					game->object->floor, x * 32, y * 32);
+			else if (game->map[y][x] == 'P')
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_wnd,
+					game->object->player, x * 32, y * 32);
+			else if (game->map[y][x] == 'C')
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_wnd,
+					game->object->coin, x * 32, y * 32);
+			else if (game->map[y][x] == 'E')
+				mlx_put_image_to_window(game->mlx_ptr, game->mlx_wnd,
+					game->object->exit, x * 32, y * 32);
+			x++;
+		}
+		y++;
+	}
+}
+
 
 void	load_textures(t_game *game, void **object, char *path, char c)
 {
@@ -38,6 +71,8 @@ void	load_textures(t_game *game, void **object, char *path, char c)
 
 int	run_game(t_game *game)
 {
+	static int count = 0;
+
 	game->object = malloc(sizeof(t_object));
 	if (!game->object)
 		return (ft_error("Game allocation failed"), 1);
@@ -47,6 +82,13 @@ int	run_game(t_game *game)
 	load_textures(game, &game->object->floor, "./textures/floor.xpm", '0');
 	load_textures(game, &game->object->coin, "./textures/coin.xpm", 'C');
 	load_textures(game, &game->object->exit, "./textures/exit.xpm", 'E');
+	if (count == 0)
+	{
+		printf("Draw map\n");
+		draw_map(game);
+		count++;
+	}
+	printf("Holaaaa\n");
 	mlx_hook(game->mlx_wnd, 17, 1L << 2, exit_game, game);
 	mlx_key_hook(game->mlx_wnd, hooks, game);
 	return (0);

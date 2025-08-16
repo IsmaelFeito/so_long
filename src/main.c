@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/06 16:25:48 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 00:11:40 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 14:06:44 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(int ac, char **av)
 		return (clean_game(&game), ft_error("MLX initialization or window creation failed"), 1);
 	if (run_game(&game) != 0)
 		return (clean_game(&game), 1);
-	mlx_key_hook(game.mlx_ptr, hooks, &game);
+	mlx_key_hook(game.mlx_wnd, hooks, &game);
 	mlx_loop(game.mlx_ptr);
 	clean_game(&game);
 	return (0);

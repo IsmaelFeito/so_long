@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/08 23:50:21 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 00:26:48 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/07/30 02:09:16 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void		count_objects(char **map, int width, int height, t_game *game);
 void		clean_mlx_resources(t_game *game);
 void		clean_game(t_game *game);
 int			exit_game(t_game *game);
+void		free_matrix(t_game *game, int **visited);
 
 //validating stuff
 int			validate_extension(const char *map_name);
