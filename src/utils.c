@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/18 12:23:59 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/08/16 13:58:22 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 14:25:12 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ void flood_fill(t_game *game, int x, int y, int **visited)
     if (game->map[y][x] == 'C')
     {
         game->coins++;
-        // ft_printf("Moneda encontrada en [%d][%d]. Total: %d\n", x, y, game->coins);
+        ft_printf("Moneda encontrada en [%d][%d]. Total: %d\n", x, y, game->coins);
     }
     else if (game->map[y][x] == 'E')
     {
         game->exit_reachable++;
-        // ft_printf("Salida encontrada en [%d][%d].\n", x, y);
+        ft_printf("Salida encontrada en [%d][%d].\n", x, y);
     }
 
     flood_fill(game, x + 1, y, visited);

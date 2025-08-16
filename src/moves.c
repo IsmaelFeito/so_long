@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 02:06:50 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/08/16 13:53:53 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 14:33:19 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,11 @@ void	finish_game(t_game *game, int move_did)
 	if (game->map[game->p_pos_y][game->p_pos_x] == 'C')
 	{
 		game->map[game->p_pos_y][game->p_pos_x] = '0';
-		game->coins--;
-		if (game->coins == 0)
+		printf("%i\n",game->total_coins--);
+		if (game->total_coins == 0){
 			game->is_colected = 1;
+			finish_game(game, move_did);
+		}
 	}
 	if (move_did)
 		printf("You've given %d steps!!\n", ++game->steps);
