@@ -6,7 +6,7 @@
 /*   By: ifeito-m <ifeito-m@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 01:10:18 by ifeito-m          #+#    #+#             */
-/*   Updated: 2025/07/30 00:11:40 by ifeito-m         ###   ########.fr       */
+/*   Updated: 2025/08/16 20:11:24 by ifeito-m         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,15 @@ void	free_textures(t_game *game)
 
 void clean_mlx_resources(t_game *game)
 {
-    if (!game->mlx_ptr)
+    if (!game)
+	{
         return;
-    free_textures(game);
-    if (game->mlx_wnd)
-    {
-        mlx_clear_window(game->mlx_ptr, game->mlx_wnd);
-        mlx_destroy_window(game->mlx_ptr, game->mlx_wnd);
-		game->mlx_wnd = NULL;
-    }
-    if (game->mlx_ptr)
-    {
+	}
+	
+	else if (game->mlx_ptr && game->mlx_wnd)
+	{
+		free_textures(game);
+		// mlx_clear_window(game->mlx_ptr, game->mlx_wnd);
         mlx_destroy_display(game->mlx_ptr);
         free(game->mlx_ptr);
 		game->mlx_ptr = NULL;
@@ -53,8 +51,6 @@ void clean_mlx_resources(t_game *game)
 
 void	clean_game(t_game *game)
 {
-	if (!game)
-		return ;
 	clean_mlx_resources(game);
 	if (game->map)
 	{
@@ -62,6 +58,7 @@ void	clean_game(t_game *game)
 		game->map = NULL;
 	}
 	free(game->object);
+	game->object = NULL;
 	game->mlx_ptr = NULL;
 	game->mlx_wnd = NULL;
 	game->e_pos_x = 0;
